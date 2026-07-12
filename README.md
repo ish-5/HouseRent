@@ -1,50 +1,125 @@
-# House Rent — Broker-Mediated Real Estate Platform
+# 🏠 HouseRent
 
-A full MERN-stack real estate platform modeled on a real-world brokerage workflow: Owners list
-properties, Admin (the broker) reviews and approves every listing, and only then can Renters book
-rentals or Buyers enquire about sale properties. Dark, glassmorphic UI with an animated, drifting
-gradient + particle background.
+## Broker-Mediated Real Estate Platform
 
-## Roles & Workflow
+A full-stack **MERN (MongoDB, Express.js, React.js, Node.js)** real estate platform modeled on a real-world brokerage workflow. Owners list properties, **Admin (the broker)** reviews and approves every listing, and only then can Renters book rentals or Buyers enquire about sale properties.
+
+The application features a **modern glassmorphic UI** with an animated drifting gradient background for an attractive user experience.
+
+---
+
+# 📌 Roles & Workflow
 
 ```
-Owner posts a property  →  Admin reviews & approves/rejects  →  Renter books (rent) or
-                                                                  Buyer enquires (sale)
+Owner posts a property
+        ↓
+Admin reviews & approves/rejects
+        ↓
+Renter books a rental property
+           OR
+Buyer enquires about a sale property
 ```
 
-- **Owner** — registers, lists properties (Rent or Sale). New listings start as `pending`. Editing an
-  already-approved listing sends it back to `pending` for re-review.
-- **Admin** — the only role that can approve/reject listings, grant/ungrant owner accounts, and see
-  everything (all users, all properties regardless of status, all bookings). **Admin cannot be
-  self-registered** — see below.
-- **Renter** — registers, browses only `approved` + available properties, can request a Rent booking
-  or submit a Sale enquiry, and tracks status under Booking History.
+### 👨‍💼 Owner
 
-## Features
+- Register and Login
+- Add properties for Rent or Sale
+- Upload property images
+- Edit/Delete properties
+- View booking requests
+- Manage property availability
 
-- Public home page with rotating hero carousel and featured listings
-- Property search with **location, address, property type, rent/sale, and price range filters**
-- Supports both **Rent** and **Sale** listings, with rent/sale-aware copy throughout ("Get Info / Book"
-  vs "Enquire to Buy", "Mark Booked" vs "Mark Sold", etc.)
-- Auth: register (**Renter / Owner only**) & login, JWT-based sessions
-- **Owner dashboard**: Add Property (image upload, location field), All Properties (review status,
-  availability toggle, delete), All Bookings (mark pending/booked or sold)
-- **Renter dashboard**: browse & filter approved properties, request a booking/enquiry, Booking
-  History with live status
-- **Admin dashboard**: All Users (grant/ungrant owners, delete users), All Properties (Approve/Reject
-  with a status filter and pending-count badge), All Bookings (full audit view)
-- Property details page shows a rejection reason to the owner, and a "pending review" notice
-- Responsive, animated dark UI (Tailwind CSS) with a unique flowing gradient + particle background
+> New properties are submitted as **Pending**. If an approved property is edited, it is sent back for Admin review.
 
-## Project Structure
+---
+
+### 👨‍💼 Admin (Broker)
+
+- Login only (cannot self-register)
+- Approve or Reject property listings
+- Grant/Ungrant owner accounts
+- View all users
+- View all properties
+- View all bookings
+- Manage the complete platform
+
+---
+
+### 🏠 Renter / Buyer
+
+- Register and Login
+- Browse approved properties
+- Search and filter properties
+- Book rental properties
+- Enquire about sale properties
+- View booking history
+
+---
+
+# ✨ Features
+
+- Public home page with featured property carousel
+- Property search using:
+  - Location
+  - Address
+  - Property Type
+  - Rent / Sale
+  - Price Range
+- Rent and Sale property support
+- JWT Authentication
+- Role-Based Login
+- Owner Dashboard
+- Renter Dashboard
+- Admin Dashboard
+- Property Approval Workflow
+- Booking Management
+- Owner Account Approval
+- Property Image Upload
+- Responsive Dark Glassmorphism UI
+- Animated Background
+
+---
+
+# 🛠 Technologies Used
+
+## Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- Axios
+
+## Backend
+
+- Node.js
+- Express.js
+- JWT Authentication
+- Multer
+
+## Database
+
+- MongoDB
+- Mongoose
+
+---
+
+# 📁 Project Structure
 
 ```
 HouseRent/
-├── client/   → React 18 + Vite + Tailwind CSS frontend
-└── server/   → Express + MongoDB (Mongoose) backend
+│
+├── client/      → React + Vite + Tailwind CSS
+├── server/      → Express + MongoDB (Mongoose)
+├── PHASEWISE DOCUMENTATION/
+├── README.md
+└── .gitignore
 ```
 
-## Step 1: Set Up the Frontend (React App)
+---
+
+# ⚙ Installation Guide
+
+## Step 1: Frontend Setup
 
 ```bash
 cd client
@@ -52,60 +127,148 @@ npm install
 npm run dev
 ```
 
-The app runs on **http://localhost:5173** (API calls are proxied to the backend automatically).
+Runs on:
 
-## Step 2: Set Up the Backend (Express Server)
+```
+http://localhost:5173
+```
 
-Open a new terminal tab/window:
+---
+
+## Step 2: Backend Setup
+
+Open another terminal.
 
 ```bash
 cd server
 npm install
+npx nodemon index.js
 ```
+shows:
+
+```
+running on port:8000
+and ✅mongodb connected
+```
+
+---
 
 ## Step 3: Configure Environment Variables
 
-Inside `server/`, create a `.env` file (a `.env.example` is provided as a template):
+Create a `.env` file inside the **server** folder.
 
-```
+Example:
+
+```env
 MONGO_URI=mongodb://localhost:27017/HouseRent
 JWT_SECRET=houserent_super_secret_change_me
 PORT=8000
 ```
 
-## Step 4: Start the Backend Server
+---
+
+## Step 4: Start Backend Server
 
 ```bash
 nodemon index.js
 ```
 
-The server runs on **http://localhost:8000**.
+Runs on:
 
-## Creating Admin Accounts
+```
+http://localhost:8000
+```
 
-Registration (both UI and API) only accepts `renter` and `owner` — this is enforced on the
-backend too, not just hidden in the dropdown, so nobody can create an admin account by calling
-the API directly. Admins are created with real database access, via the seed script, which
-creates **two** admin accounts by default so more than one person can monitor/broker the platform:
+---
+
+# 👨‍💼 Creating Admin Accounts
+
+Registration only allows **Owner** and **Renter** roles.
+
+Admin accounts cannot be created through registration.
+
+Create default admin accounts using:
 
 ```bash
 cd server
 npm run seed
 ```
 
-This creates:
-- `admin1@houserent.com` / `Admin@123`
-- `admin2@houserent.com` / `Admin@456`
+Default Accounts
 
-Log in with either to reach `/admin`. To add more admins later, add another entry to the `ADMINS`
-array in `server/seed.js` and run `npm run seed` again — it skips any email that already exists.
+```
+admin1@houserent.com
+Password: Admin@123
 
-## Notes
+admin2@houserent.com
+Password: Admin@456
+```
 
-- Uploaded property images are stored in `server/uploads` and served at `/uploads/<filename>`.
-- New Owner accounts start as **not granted**; use the Admin → All Users tab to grant them.
-  (This is separate from property approval — it's a broader "is this a trustworthy owner" flag.)
-- New properties start as `pending` and are invisible on the public/renter browse page until an
-  Admin approves them from Admin → All Properties.
-- Bookings/enquiries start as `pending`; Owners/Admins can flip status between `pending` and
-  `booked` (labeled "sold" for Sale properties).
+You can add more admin accounts by editing:
+
+```
+server/seed.js
+```
+
+---
+
+# 📂 Documentation
+
+The repository includes complete project documentation inside the **PHASEWISE DOCUMENTATION** folder.
+
+Documentation includes:
+
+- Requirement Analysis
+- Brainstorming & Ideation
+- Project Planning
+- Project Design
+- Project Development
+- Final Project Documentation
+
+---
+
+# 🎥 Demo Video
+
+**Google Drive Demo:**
+
+https://drive.google.com/file/d/1rW67_Q6fhhDazjiIrcXiGNcpeQgSgNBC/view?usp=sharing
+
+---
+
+# 📝 Notes
+
+- Uploaded property images are stored in **server/uploads**.
+- New Owner accounts are created as **Not Granted** until approved by Admin.
+- New Property listings remain **Pending** until approved by Admin.
+- Renters can only view **Approved** properties.
+- Booking requests begin with **Pending** status.
+- Owners/Admins can change booking status between **Pending** and **Booked** (or **Sold** for sale properties).
+
+---
+
+# 🚀 Future Enhancements
+
+- Google Maps Integration
+- Property Reviews & Ratings
+- Chat Between Owner & Renter
+- PDF Booking Receipt
+- Real-time Notifications
+- Dark / Light Theme
+- Advanced Property Search
+- Fully Responsive Mobile UI
+
+---
+
+# 👩‍💻 Developed By
+
+**RAGA PRIYA ISWARYA YASALAPU(TEAM MEMBER) && PRAVEEN KUMAR PENUGONDA(TEAM LEADER) OF HOUSERENT PROJECT**
+
+**B.Tech – Computer Science & Engineering**
+
+**Rajahmundry Institute of Engineering & Technology (RIET)**
+
+---
+
+# 📜 License
+
+This project was developed for educational and internship purposes.
