@@ -269,7 +269,7 @@ https://drive.google.com/file/d/1rW67_Q6fhhDazjiIrcXiGNcpeQgSgNBC/view?usp=shari
 
 **B.Tech – Computer Science & Engineering**
 
-**Rajahmundry Institute of Engineering & Technology (RIET)**
+**Rajamahendri Institute of Engineering & Technology (RIET)**
 
 ---
 
