@@ -212,6 +212,22 @@ server/seed.js
 
 ---
 
+# 🌟 Project Highlights
+
+- 🔐 **Secure Role-Based Authentication** using JWT.
+- 👨‍💼 **Admin accounts cannot be created through registration.** Only pre-created admin accounts can access the Admin Dashboard.
+- 👥 **Two default Admin accounts** are available through the seed script for platform management.
+- 🏠 **Dual Role Support:** The same person can register as both **Owner** and **Renter** using the **same email address**, provided the password is the same.
+- 🚫 If a user tries to register the same email with a **different password**, registration is blocked and the system displays **"User already exists"** to maintain account security.
+- 🏘️ **Broker-Mediated Workflow:** Property listings must be approved by the Admin before they become visible to renters or buyers.
+- 📋 **Owner Approval System:** New owner accounts require Admin approval (Grant/Ungrant) before full access.
+- 🏡 Supports **both Rental and Sale** property listings in a single platform.
+- 📸 Multiple property image upload support.
+- 📊 Separate dashboards for **Admin**, **Owner**, and **Renter**, each with role-specific functionalities.
+- 🎨 Modern **Glassmorphism UI** with an animated background for an enhanced user experience.
+
+---
+
 # 📂 Documentation
 
 The repository includes complete project documentation inside the **PHASEWISE DOCUMENTATION** folder.
@@ -246,18 +262,6 @@ https://drive.google.com/file/d/1rW67_Q6fhhDazjiIrcXiGNcpeQgSgNBC/view?usp=shari
 
 ---
 
-# 🚀 Future Enhancements
-
-- Google Maps Integration
-- Property Reviews & Ratings
-- Chat Between Owner & Renter
-- PDF Booking Receipt
-- Real-time Notifications
-- Dark / Light Theme
-- Advanced Property Search
-- Fully Responsive Mobile UI
-
----
 
 # 👩‍💻 Developed By
 
