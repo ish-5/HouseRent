@@ -4,8 +4,6 @@ This folder contains the architecture and design documents prepared as part of t
 
 ## Documents Included
 
-## Documents Included
-
 1. ER Diagram
    - Database entity relationships used in the HouseRent application.
 
